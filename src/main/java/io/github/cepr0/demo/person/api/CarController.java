@@ -1,0 +1,75 @@
+/*
+ * Copyright 2019 Generic-CRUD contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.cepr0.demo.person.api;
+
+import io.github.cepr0.crud.api.AbstractCrudController;
+import io.github.cepr0.crud.api.OnCreate;
+import io.github.cepr0.crud.api.OnUpdate;
+import io.github.cepr0.demo.model.Car;
+import io.github.cepr0.demo.person.dto.CarRequest;
+import io.github.cepr0.demo.person.dto.CarResponse;
+import io.github.cepr0.demo.person.service.CarService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("cars")
+public class CarController extends AbstractCrudController<Car, String, CarRequest, CarResponse> {
+
+	public CarController(@NonNull final CarService service) {
+		super(service);
+	}
+
+	@PostMapping
+	@Override
+	@NonNull
+	public ResponseEntity<CarResponse> create(@Validated(OnCreate.class) @RequestBody @NonNull final CarRequest request) {
+		return super.create(request);
+	}
+
+	@PatchMapping("/{id}")
+	@Override
+	@NonNull
+	public ResponseEntity<CarResponse> update(@PathVariable("id") @NonNull final String id, @Validated(OnUpdate.class) @RequestBody @NonNull final CarRequest request) {
+		return super.update(id, request);
+	}
+
+	@DeleteMapping("/{id}")
+	@Override
+	@NonNull
+	public ResponseEntity<?> delete(@PathVariable("id") @NonNull final String id) {
+		return super.delete(id);
+	}
+
+	@GetMapping("/{id}")
+	@Override
+	@NonNull
+	public ResponseEntity<CarResponse> getOne(@PathVariable("id") @NonNull final String id) {
+		return super.getOne(id);
+	}
+
+	@GetMapping
+	@Override
+	@NonNull
+	public ResponseEntity<List<CarResponse>> getAll() {
+		return super.getAll();
+	}
+}
