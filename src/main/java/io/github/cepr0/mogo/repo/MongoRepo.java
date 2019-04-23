@@ -59,17 +59,17 @@ public interface MongoRepo<T extends IdentifiableEntity<ID>, ID extends Serializ
 		return findById(id).orElseThrow(() -> new DocNotFoundException(format("Mongo document with id '%s' not found", id)));
 	}
 
-	@Query("{}")
+	@Query("{id: { $exists: true }}")
 	@Override
 	@NonNull
 	List<T> getAll();
 
-	@Query("{}")
+	@Query("{id: { $exists: true }}")
 	@Override
 	@NonNull
 	Page<T> getAll(@NonNull Pageable pageable);
 
-	@Query("{}")
+	@Query("{id: { $exists: true }}")
 	@Override
 	@NonNull
 	List<T> getAll(@NonNull Sort sort);

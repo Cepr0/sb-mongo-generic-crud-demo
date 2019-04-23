@@ -17,5 +17,5 @@ import java.util.Set;
 @TypeAlias("person")
 public class Person extends BaseDoc {
 	private String name;
-	@DBRef private Set<Car> cars = new HashSet<>();
+	@DBRef(lazy = true) private Set<Car> cars = new HashSet<>();
 }
