@@ -1,4 +1,4 @@
-package io.github.cepr0.mogo.model;
+package io.github.cepr0.demo.model;
 
 import io.github.cepr0.crud.model.IdentifiableEntity;
 

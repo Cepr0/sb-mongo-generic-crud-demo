@@ -1,6 +1,5 @@
 package io.github.cepr0.demo.model;
 
-import io.github.cepr0.mogo.model.MongoEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

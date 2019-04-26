@@ -13,9 +13,9 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document("people")
+@Document(collection = "people")
 @TypeAlias("person")
 public class Person extends BaseDoc {
 	private String name;
-	@DBRef(lazy = true) private Set<Car> cars = new HashSet<>();
+	@DBRef private Set<Car> cars = new HashSet<>();
 }

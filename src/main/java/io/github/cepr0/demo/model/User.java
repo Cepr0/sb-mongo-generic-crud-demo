@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document("users")
+@Document(collection = "users")
 @TypeAlias("user")
 public class User extends BaseDoc {
 	private String name;

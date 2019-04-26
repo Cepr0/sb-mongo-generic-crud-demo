@@ -24,7 +24,6 @@ import io.github.cepr0.demo.person.dto.CarRequest;
 import io.github.cepr0.demo.person.dto.CarResponse;
 import io.github.cepr0.demo.person.service.CarService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.NonNull;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,41 +33,41 @@ import java.util.List;
 @RequestMapping("cars")
 public class CarController extends AbstractCrudController<Car, String, CarRequest, CarResponse> {
 
-	public CarController(@NonNull final CarService service) {
+	public CarController(final CarService service) {
 		super(service);
 	}
 
 	@PostMapping
 	@Override
-	@NonNull
-	public ResponseEntity<CarResponse> create(@Validated(OnCreate.class) @RequestBody @NonNull final CarRequest request) {
+
+	public ResponseEntity<CarResponse> create(@Validated(OnCreate.class) @RequestBody final CarRequest request) {
 		return super.create(request);
 	}
 
 	@PatchMapping("/{id}")
 	@Override
-	@NonNull
-	public ResponseEntity<CarResponse> update(@PathVariable("id") @NonNull final String id, @Validated(OnUpdate.class) @RequestBody @NonNull final CarRequest request) {
+
+	public ResponseEntity<CarResponse> update(@PathVariable("id") final String id, @Validated(OnUpdate.class) @RequestBody final CarRequest request) {
 		return super.update(id, request);
 	}
 
 	@DeleteMapping("/{id}")
 	@Override
-	@NonNull
-	public ResponseEntity<?> delete(@PathVariable("id") @NonNull final String id) {
+
+	public ResponseEntity<?> delete(@PathVariable("id") final String id) {
 		return super.delete(id);
 	}
 
 	@GetMapping("/{id}")
 	@Override
-	@NonNull
-	public ResponseEntity<CarResponse> getOne(@PathVariable("id") @NonNull final String id) {
+
+	public ResponseEntity<CarResponse> getOne(@PathVariable("id") final String id) {
 		return super.getOne(id);
 	}
 
 	@GetMapping
 	@Override
-	@NonNull
+
 	public ResponseEntity<List<CarResponse>> getAll() {
 		return super.getAll();
 	}

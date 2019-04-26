@@ -10,11 +10,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document("cars")
+@Document(collection = "cars")
 @TypeAlias("car")
 public class Car extends BaseDoc {
 	private String brand;
 	private String model;
 	private Integer year;
-	@DBRef(lazy = true) private Person person;
+	@DBRef private Person person;
 }
