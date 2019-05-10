@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CarService extends AbstractCrudService<Car, String, CarRequest, CarResponse> {
-	protected CarService(final CarRepo repo, final CarMapper mapper) {
+
+	public CarService(final CarRepo repo, final CarMapper mapper) {
 		super(repo, mapper);
 	}
 

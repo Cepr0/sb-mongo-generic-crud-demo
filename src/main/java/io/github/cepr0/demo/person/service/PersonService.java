@@ -12,7 +12,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PersonService extends AbstractCrudService<Person, String, PersonRequest, PersonResponse> {
-	protected PersonService(final PersonRepo repo, final PersonMapper mapper) {
+
+	public PersonService(final PersonRepo repo, final PersonMapper mapper) {
 		super(repo, mapper);
 	}
 
@@ -25,18 +26,12 @@ public class PersonService extends AbstractCrudService<Person, String, PersonReq
 	}
 
 	@EventListener
-	public void onCarUpdate(CarUpdateEvent event) {
-		Car car = event.getEntity();
-		Person person = car.getPerson();
-		person.getCars().add(car);
-		((PersonRepo) repo).save(person);
-	}
-
-	@EventListener
 	public void onCarDelete(CarDeleteEvent event) {
 		Car car = event.getEntity();
-		Person person = car.getPerson();
-		person.getCars().remove(car);
-		((PersonRepo) repo).save(person);
+		String personId = car.getPerson().getId();
+		repo.getById(personId).ifPresent(person -> {
+			person.getCars().remove(car);
+			((PersonRepo) repo).save(person);
+		});
 	}
 }

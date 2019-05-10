@@ -16,5 +16,5 @@ public class Car extends BaseDoc {
 	private String brand;
 	private String model;
 	private Integer year;
-	@DBRef private Person person;
+	@DBRef(lazy = true) private Person person;
 }
