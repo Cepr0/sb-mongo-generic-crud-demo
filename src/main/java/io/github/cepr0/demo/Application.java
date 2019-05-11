@@ -7,11 +7,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.MongoTransactionManager;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
+@EnableAsync
 @SpringBootApplication
 public class Application {
 
@@ -28,6 +32,7 @@ public class Application {
 	/**
 	 * https://www.baeldung.com/spring-data-mongodb-transactions
 	 */
+	@Profile("replSet")
 	@Bean
 	MongoTransactionManager transactionManager(MongoDbFactory dbFactory) {
 		return new MongoTransactionManager(dbFactory);
@@ -37,6 +42,7 @@ public class Application {
 	 * Multi-document transactions works only for existing collections
 	 * https://stackoverflow.com/a/53501677
 	 */
+	@Async
 	@EventListener
 	public void onReady(ApplicationReadyEvent event) {
 
