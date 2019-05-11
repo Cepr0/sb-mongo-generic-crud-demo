@@ -31,10 +31,6 @@ services:
     hostname: mongosetup
     container_name: mongosetup
     image: mongo
-    links:
-      - mongo0:mongo0
-      - mongo1:mongo1
-      - mongo2:mongo2
     depends_on:
       - mongo0
       - mongo1
